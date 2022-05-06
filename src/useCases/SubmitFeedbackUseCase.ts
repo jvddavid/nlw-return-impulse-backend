@@ -3,7 +3,7 @@ Author: João Victor David de Oliveira (j.victordavid2@gmail.com)
 SubmitFeedbackUseCase.ts (c) 2022
 Desc: description
 Created:  2022-05-05T04:06:36.761Z
-Modified: 2022-05-05T04:53:07.213Z
+Modified: 2022-05-06T20:54:37.303Z
 */
 
 import { MailAdapter } from "../adapters/mailAdapter"
@@ -38,11 +38,13 @@ export class SubmitFeedbackUseCase {
 
 
     await this.mailAdapter.sendMail({
-      subject: 'Novo Feedback',
+      subject: `[${type.toUpperCase()}] Novo Feedback`,
       body: [
         '<div style="font-family: sans-serif; font-size: 16px; color: #111;">',
         `<p>Tipo do feedback ${type}</p>`,
         `<p>Comentário: ${comment}</p>`,
+        `<p>Screenshot:</p>`,
+        `<img style="width: 30%" src="${screenshot}" />`,
         '</div>'
       ].join('\n'),
     })
